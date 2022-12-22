@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'studybud.wsgi.application'
 
 DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'HOST': 'dpg-cehe4hg2i3mqvl91u540-a.oregon-postgres.render.com', #e.g localhost
             'NAME': 'studybuddy',
             'USER': 'studybuddy_user', #e.g postgres
