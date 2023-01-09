@@ -11,11 +11,18 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 import os
+
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+DEBUG = config('DEBUG', cast=bool)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -42,6 +49,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic', 
     # App Route Config
     'base.apps.BaseConfig',
+    'cloudinary',
 ]
 
 AUTH_USER_MODEL = 'base.User'
@@ -90,17 +98,35 @@ WSGI_APPLICATION = 'studybud.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'HOST': 'dpg-cehe4hg2i3mqvl91u540-a.oregon-postgres.render.com', #e.g localhost
+#             'NAME': 'studybuddy',
+#             'USER': 'studybuddy_user', #e.g postgres
+#             'PASSWORD': 'Us9jkPps23r4G4Rspz6kJf6RZbyCVI5A',
+#             'PORT': '5432',
+
+#         }
+#     }
+
 DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'HOST': 'dpg-cehe4hg2i3mqvl91u540-a.oregon-postgres.render.com', #e.g localhost
-            'NAME': 'studybuddy',
-            'USER': 'studybuddy_user', #e.g postgres
-            'PASSWORD': 'Us9jkPps23r4G4Rspz6kJf6RZbyCVI5A',
-            'PORT': '5432',
+            'HOST': config('HOST'), #e.g localhost
+            'NAME': config('NAME'),
+            'USER': config('USER'), #e.g postgres
+            'PASSWORD': config('PASSWORD'),
+            'PORT': config('PORT', cast=int),
 
         }
     }
+
+cloudinary.config( 
+  cloud_name = config('CLOUDINARY_NAME'), 
+  api_key = config('CLOUDINARY_KEY') , 
+  api_secret = config('CLOUDINARY_SECRET')  
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
