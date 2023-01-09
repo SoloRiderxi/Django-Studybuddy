@@ -8,7 +8,7 @@ services:
     name: deploy_renderer
     env: python
     buildCommand: "./build.sh"
-    startCommand: "gunicorn deploy_renderer.wsgi:application"
+    startCommand: "gunicorn studybud.wsgi:application"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
