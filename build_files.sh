@@ -1,11 +1,7 @@
 # build_files.sh
 echo "Build started"
-# python -m pip install -r requirements.txt
-# python manage.py collectstatic --noinput --clear
 pip install -r requirements.txt
-
-python manage.py collectstatic --no-input
-python manage.py migrate
+python3.9 manage.py collectstatic
 echo "Build Ended"
 
 
