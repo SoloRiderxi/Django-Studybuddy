@@ -1,8 +1,3 @@
-databases:
-  - name: deploy_renderer
-    databaseName: deploy_renderer
-    user: lakshan
-
 services:
   - type: web
     name: deploy_renderer
